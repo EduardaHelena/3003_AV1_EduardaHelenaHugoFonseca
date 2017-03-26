@@ -42,7 +42,7 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
             Bussola.next = Mapa;
             Mapa.next = Veneno;
             Veneno.next = Pistola;
-            Itens currentElement ;
+            Itens currentElement = Pedra ;
 
             //currentElement != null;
 
@@ -59,7 +59,7 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                     Console.WriteLine("");
                     Console.WriteLine("Digite o item que deseja procurar: (Pedra, Papel, Tesoura, Caneta, Bussola, Mapa, Veneno ou Pistola)");
                     string RespostaUsuario = Console.ReadLine();
-                    currentElement = Pedra;
+                    
                     int posicao = 1;
 
                 while (RespostaUsuario != null)
@@ -86,12 +86,13 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
 
                                 Console.WriteLine("Voce nao tem mais esse item");
                                 Console.WriteLine();
-                                currentElement = currentElement.next.next;
+                                currentElement = currentElement.next;
                                 Console.WriteLine(currentElement.Nome);
                                 Console.WriteLine("Deseja fazer uma nova busca?");
                                 RespostaBusca = Console.ReadLine();
                                 break;
                             }
+
                             }
 
                         }
