@@ -42,7 +42,7 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
             Bussola.next = Mapa;
             Mapa.next = Veneno;
             Veneno.next = Pistola;
-            Itens currentElement = Pedra;
+            Itens currentElement ;
 
             //currentElement != null;
 
@@ -55,16 +55,14 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
 
             while (RespostaBusca == "Sim" || RespostaBusca == "sim")
             {
-
-                    //Itens currentElement = Pedra;
+                
                     Console.WriteLine("");
                     Console.WriteLine("Digite o item que deseja procurar: (Pedra, Papel, Tesoura, Caneta, Bussola, Mapa, Veneno ou Pistola)");
                     string RespostaUsuario = Console.ReadLine();
-                    
-
+                    currentElement = Pedra;
                     int posicao = 1;
 
-                    while (RespostaUsuario != null)
+                while (RespostaUsuario != null)
                     {
                         if (RespostaUsuario == currentElement.Nome)
                         {
@@ -87,8 +85,17 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                                 {
                                     Console.WriteLine("Voce nao tem mais esse item");
                                     Console.WriteLine();
-                                    RespostaBusca = null;
-                                    break;                                     
+
+                                    if (posicao == 1)
+                                    {
+                                        currentElement = currentElement.next;
+                                        Console.WriteLine (currentElement.Nome);
+                                        Console.WriteLine("Deseja fazer uma nova busca?");
+                                        RespostaBusca = Console.ReadLine();
+                                    break;
+                                }
+                                        
+                                                                         
                                 }   
                             }
 
@@ -100,7 +107,10 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                             posicao++;
                         }
 
-                    }
+                        
+                }
+
+                   
                 
             }
 
