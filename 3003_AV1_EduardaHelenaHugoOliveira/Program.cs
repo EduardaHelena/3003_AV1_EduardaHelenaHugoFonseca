@@ -25,7 +25,7 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
     {
         private static void Main(string[] args)
         {
-            Itens Pedra = new Itens("5", "Pedra");
+            Itens Pedra = new Itens("2", "Pedra");
             Itens Papel = new Itens("4", "Papel");
             Itens Tesoura = new Itens("3", "Tesoura");
             Itens Caneta = new Itens("3", "Caneta");
@@ -42,7 +42,8 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
             Bussola.next = Mapa;
             Mapa.next = Veneno;
             Veneno.next = Pistola;
-            
+            Itens currentElement = Pedra;
+
             //currentElement != null;
 
             // Iterando com Usuario
@@ -54,14 +55,14 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
 
             while (RespostaBusca == "Sim" || RespostaBusca == "sim")
             {
-                
-                
+
+                    //Itens currentElement = Pedra;
                     Console.WriteLine("");
                     Console.WriteLine("Digite o item que deseja procurar: (Pedra, Papel, Tesoura, Caneta, Bussola, Mapa, Veneno ou Pistola)");
                     string RespostaUsuario = Console.ReadLine();
-                    Itens currentElement = Pedra;
+                    
 
-                int posicao = 1;
+                    int posicao = 1;
 
                     while (RespostaUsuario != null)
                     {
@@ -72,10 +73,25 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                             Console.WriteLine(" Posicao do Item na lista: " + posicao);
                             Console.WriteLine(" Quantidade: " + currentElement.Quantidade);
                             Console.WriteLine("");
-                            Console.Write("Deseja fazer uma nova busca?");
-                            Console.WriteLine("");
-                            RespostaBusca = Console.ReadLine();
-                            RespostaUsuario = null;
+                            Console.WriteLine("Deseja ultilizar item? (Sim ou Nao)");
+                            string RespostaUsoItem = Console.ReadLine();
+
+                            if (RespostaUsoItem == "Sim")
+                            {
+                                int numeroitem = Int32.Parse(currentElement.Quantidade);
+                                numeroitem--;
+                                string quantidadeitem = numeroitem.ToString();
+                                currentElement.Quantidade = quantidadeitem;
+
+                                if (numeroitem == 0)
+                                {
+                                    Console.WriteLine("Voce nao tem mais esse item");
+                                    Console.WriteLine();
+                                    RespostaBusca = null;
+                                    break;                                     
+                                }   
+                            }
+
                         }
 
                         else if (RespostaUsuario != currentElement.Nome)
@@ -92,7 +108,13 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
             {
                 Environment.Exit(0);
             }
-
+            
+             else if (RespostaBusca == null)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Deseja fazer uma nova busca?");
+                RespostaBusca = Console.ReadLine();
+            }
             else if (RespostaBusca != "Sim" || RespostaBusca != "sim" || RespostaBusca != "Nao" || RespostaBusca != "Não")
             {
                 Console.WriteLine("Desculpe, esse comando nao existe");
