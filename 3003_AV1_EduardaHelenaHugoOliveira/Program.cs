@@ -81,22 +81,17 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                                 string quantidadeitem = numeroitem.ToString();
                                 currentElement.Quantidade = quantidadeitem;
 
-                                if (numeroitem == 0)
-                                {
-                                    Console.WriteLine("Voce nao tem mais esse item");
-                                    Console.WriteLine();
+                            if (numeroitem == 0 && posicao == 1)
+                            {
 
-                                    if (posicao == 1)
-                                    {
-                                        currentElement = currentElement.next;
-                                        Console.WriteLine (currentElement.Nome);
-                                        Console.WriteLine("Deseja fazer uma nova busca?");
-                                        RespostaBusca = Console.ReadLine();
-                                    break;
-                                }
-                                        
-                                                                         
-                                }   
+                                Console.WriteLine("Voce nao tem mais esse item");
+                                Console.WriteLine();
+                                currentElement = currentElement.next.next;
+                                Console.WriteLine(currentElement.Nome);
+                                Console.WriteLine("Deseja fazer uma nova busca?");
+                                RespostaBusca = Console.ReadLine();
+                                break;
+                            }
                             }
 
                         }
