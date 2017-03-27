@@ -124,7 +124,7 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                    
                     else if (RespostaUsuario != currentElement.Nome)
                     {
-                        if (RespostaUsuario != currentElement.Nome && RespostaUsuario != "Pistola")
+                        if (RespostaUsuario != currentElement.Nome && currentElement.Nome == "Pistola")
                         {
                             Console.WriteLine("");
                             Console.WriteLine("Dado Invalido");
