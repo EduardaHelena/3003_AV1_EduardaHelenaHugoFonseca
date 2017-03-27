@@ -9,6 +9,7 @@ public class Itens
 {
     public string Quantidade;
     public string Nome;
+    
     public Itens next = null;
 
     public Itens(string Quantidade, string Nome)
@@ -18,11 +19,15 @@ public class Itens
     }
 
 }
-  
+
+
 namespace _3003_AV1_EduardaHelenaHugoOliveira
 {
     internal class Inventario
+
     {
+       
+
         private static void Main(string[] args)
         {
             Itens Pedra = new Itens("2", "Pedra");
@@ -42,80 +47,113 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
             Bussola.next = Mapa;
             Mapa.next = Veneno;
             Veneno.next = Pistola;
-            Itens currentElement = Pedra ;
+            Itens currentElement = Pedra;
+            
 
             //currentElement != null;
 
             // Iterando com Usuario
 
-                Console.WriteLine("Seja Bem-Vindo ao seu Invetario");
-                Console.WriteLine("Deseja fazer uma busca no seu inventario? ");
-                Console.WriteLine("");
-                string RespostaBusca = Console.ReadLine();
+            Console.WriteLine("Seja Bem-Vindo ao seu Invetario");
+            Console.WriteLine("Deseja fazer uma busca no seu inventario? ");
+            Console.WriteLine("");
+            string RespostaBusca = Console.ReadLine();
+            
+            int posicao = 1;
+           
 
             while (RespostaBusca == "Sim" || RespostaBusca == "sim")
             {
+
+                Console.WriteLine("");
+                Console.WriteLine("Digite o item que deseja procurar: (Pedra, Papel, Tesoura, Caneta, Bussola, Mapa, Veneno ou Pistola)");
+                string RespostaUsuario = Console.ReadLine();
                 
-                    Console.WriteLine("");
-                    Console.WriteLine("Digite o item que deseja procurar: (Pedra, Papel, Tesoura, Caneta, Bussola, Mapa, Veneno ou Pistola)");
-                    string RespostaUsuario = Console.ReadLine();
-                    
-                    int posicao = 1;
 
                 while (RespostaUsuario != null)
+                {
+                    if (RespostaUsuario == currentElement.Nome)
                     {
-                        if (RespostaUsuario == currentElement.Nome)
-                        {
-                            Console.WriteLine("");
-                            Console.WriteLine(" Nome do Item: " + currentElement.Nome);
-                            Console.WriteLine(" Posicao do Item na lista: " + posicao);
-                            Console.WriteLine(" Quantidade: " + currentElement.Quantidade);
-                            Console.WriteLine("");
-                            Console.WriteLine("Deseja ultilizar item? (Sim ou Nao)");
-                            string RespostaUsoItem = Console.ReadLine();
+                        Console.WriteLine("");
+                        Console.WriteLine(" Nome do Item: " + currentElement.Nome);
+                        Console.WriteLine(" Posicao do Item na lista: " + posicao);
+                        Console.WriteLine(" Quantidade: " + currentElement.Quantidade);
+                        Console.WriteLine("");
+                        Console.WriteLine("Deseja ultilizar item? (Sim ou Nao)");
+                        string RespostaUsoItem = Console.ReadLine();
 
-                            if (RespostaUsoItem == "Sim")
+                        if (RespostaUsoItem == "Sim" || RespostaUsoItem == "sim")
+                        {
+                            int numeroitem = Int32.Parse(currentElement.Quantidade);
+
+                            if (numeroitem > 0)
                             {
-                                int numeroitem = Int32.Parse(currentElement.Quantidade);
                                 numeroitem--;
                                 string quantidadeitem = numeroitem.ToString();
                                 currentElement.Quantidade = quantidadeitem;
+                                
+                            }
 
-                            if (numeroitem == 0 && posicao == 1)
+                            else if (numeroitem == 0 && posicao == 1)
                             {
 
                                 Console.WriteLine("Voce nao tem mais esse item");
                                 Console.WriteLine();
-                                currentElement = currentElement.next;
+                                currentElement = currentElement.next;                             
                                 Console.WriteLine(currentElement.Nome);
                                 Console.WriteLine("Deseja fazer uma nova busca?");
                                 RespostaBusca = Console.ReadLine();
                                 break;
                             }
-
-                            }
-
+                            
                         }
 
-                        else if (RespostaUsuario != currentElement.Nome)
+                        else if(RespostaUsoItem == "Nao" || RespostaUsoItem == "nao")
+                        {
+                            Console.WriteLine("Deseja fazer uma nova busca?");
+                            RespostaBusca = Console.ReadLine();
+
+                            if(RespostaUsoItem == "Nao" || RespostaUsoItem == "nao" && RespostaBusca == "Nao" || RespostaBusca == "nao")
+                            {
+                                Environment.Exit(0);
+                            }
+                        }
+
+                    }
+
+                   
+                    else if (RespostaUsuario != currentElement.Nome)
+                    {
+                        if (RespostaUsuario != currentElement.Nome && RespostaUsuario != "Pistola")
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("Dado Invalido");
+                            Console.WriteLine("");
+                            
+                            break;
+                        }
+
+                        else 
                         {
                             currentElement = currentElement.next;
                             posicao++;
                         }
 
-                        
+                    }
+
+
                 }
 
-                   
-                
+
+
             }
 
-             if (RespostaBusca == "Nao" || RespostaBusca == "Não")
+            if (RespostaBusca == "Nao" || RespostaBusca == "Não")
             {
                 Environment.Exit(0);
             }
-            
-             else if (RespostaBusca == null)
+
+            else if (RespostaBusca == null)
             {
                 Console.WriteLine("");
                 Console.WriteLine("Deseja fazer uma nova busca?");
@@ -128,20 +166,37 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                 RespostaBusca = Console.ReadLine();
             }
 
-           
             Console.ReadKey();
-        }
-            /*while (RespostaUsuario)
-                
-                Console.WriteLine(" Nome do Item: " + currentElement.Nome);
-                Console.WriteLine(" Quantidade: " + currentElement.Quantidade);
-                currentElement = currentElement.next;
-                Console.WriteLine();
             
+        }
+    }
+ } 
+  
 
-            Console.WriteLine("Acabou a lista");*/
+
+
+        
+
+           
+
+
+
+    
+        
+ 
+        
+        
+        
+        
+        
+
+            
+            
+    
+
+          
           
         
        
-    }
-}
+    
+
