@@ -48,7 +48,7 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
             Mapa.next = Veneno;
             Veneno.next = Pistola;
             Itens currentElement = Pedra;
-            
+            //Itens anterior;
 
             //currentElement != null;
 
@@ -60,7 +60,8 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
             string RespostaBusca = Console.ReadLine();
             
             int posicao = 1;
-           
+            int indice;
+
 
             while (RespostaBusca == "Sim" || RespostaBusca == "sim")
             {
@@ -106,6 +107,31 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                                 break;
                             }
                             
+                            else if (numeroitem == 0 && posicao != 1)
+                            {
+                                Console.WriteLine("Voce nao tem mais esse item");
+                                Console.WriteLine();
+                                posicao--;
+                                indice = 1;
+                               
+                                while (indice != posicao)
+                                {
+                                    currentElement = currentElement.next;
+                                    indice++;
+                                       
+                                }
+
+                                if (indice == posicao)
+                                {
+                                    Console.WriteLine(currentElement.Nome);
+                                    break;
+                                }
+                             
+                                Console.WriteLine("Deseja fazer uma nova busca?");
+                                RespostaBusca = Console.ReadLine();
+                                break;
+                            }
+                            
                         }
 
                         else if(RespostaUsoItem == "Nao" || RespostaUsoItem == "nao")
@@ -124,13 +150,12 @@ namespace _3003_AV1_EduardaHelenaHugoOliveira
                    
                     else if (RespostaUsuario != currentElement.Nome)
                     {
-                        if (RespostaUsuario != currentElement.Nome && currentElement.Nome == "Pistola")
+                        if (RespostaUsuario != currentElement.Nome && posicao == 8 )
                         {
                             Console.WriteLine("");
                             Console.WriteLine("Dado Invalido");
                             Console.WriteLine("");
-                            
-                            break;
+                            //break;
                         }
 
                         else 
